@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:owl="http://www.w3.org/2002/07/owl#"
+        xmlns:dc="http://purl.org/dc/terms/"
+        xmlns:football="https://example.org/schema/football/">
+         
+
+        <football:player rdf:about="https://dbpedia.org/page/David_de_Gea">
+            <football:id>1</football:id>
+            <football:name>David De Gea</football:name>
+            <football:number>1</football:number>
+            <foaf:homepage rdf:resource="https://sports.ndtv.com/football/players/95843-david-de-gea-playerprofile"/>
+        </football:player>
+
+        <football:player rdf:about="https://dbpedia.org/page/Cristiano_Ronaldo">
+            <football:id>2</football:id>
+            <football:name>Cristiano_Ronaldo</football:name>
+            <football:number>7</football:number>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"/>
+        </football:player>
+</rdf:RDF>
