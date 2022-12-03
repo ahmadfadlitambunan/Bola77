@@ -1,6 +1,8 @@
-<footer class="py-4 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; PlayBet77</p></div>
-        </footer>
+    <footer class="fixed-bottom py-2 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; PlayBet77</p>
+        </div>
+    </footer>
         <!-- Bootstrap core JS-->
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

@@ -62,96 +62,93 @@ $res = $dbpedia_endpoint->query($queryCLubs);
 
 <!-- Detalis section-->
 <section class="py-3">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container px-4 px-lg-5 my-3">
+        <div class="text-center font-weight-bold lead mb-3">
+            <h1>Profile Pemain</h1>
+        </div>
         <div class="row gx-4 gx-lg-5 align-items-center mb-2">
             <div class="card text-white">
                 <img class="card-img" src="<?= $row->banner ?>" alt="Card image">
                 <div class="card-img-overlay">
-                    <h1 class="card-title"><?= $row->name ?></h1>
+                    <h2 class="card-title"><?= $row->name ?></h2>
                 </div>
             </div>
         </div>
         <div class="row gx-4 gx-lg-5">
             <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." /></div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2 class='font-weight-bold'>Data Pemain</h2>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Nama Lengkap :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->fullName ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tempat Lahir :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->bPlace ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tanggal Lahir (umur) :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->bDay ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tinggi  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->height ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Kaki Terkuat  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->foot ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Posisi  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->pos ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Club Sekarang  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->clubN ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Harga Pasar  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                <?= $row->price ?>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6 ">
-                                <h3 class="font-weight-bold">Clubs :</h3>
-                                <div class="list-group list-group-flush">
-                                    <?php foreach($res as $r) :?>
-                                    <a href="club.php?idn=<?= extractURI($r->club)?>" class="list-group-item list-group-item-action"><?= $r->clubName ?></a>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
+            <div class="col-md-8 lead">
+                <h1 class="display-5 fw-bolder">Data Pemain</h1>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Nama Lengkap :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->fullName ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Tempat Lahir :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->bPlace ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Tanggal Lahir (umur) :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->bDay ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Tinggi  :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->height ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Kaki Terkuat  :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->foot ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Posisi  :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->pos ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Club Sekarang  :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->clubN ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        Harga Pasar  :
+                    </div>
+                    <div class="col-6 text-bold">
+                        <?= $row->price ?>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6 ">
+                        <h3 class="font-weight-bold">Clubs :</h3>
+                        <div class="list-group list-group-flush">
+                            <?php foreach($res as $r) :?>
+                            <a href="club.php?idn=<?= extractURI($r->club)?>" class="list-group-item list-group-item-action"><?= $r->clubName ?></a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
