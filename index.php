@@ -45,10 +45,12 @@ $result = $jena_endpoint->query($sparql_query);
             <div class="carousel-item <?php if($row->id == 'p1') echo ' active'; ?>">
                 <img class="d-block w-100" src="<?= $row->cover ?>" alt="First slide">
                 <div class="carousel-caption d-none d-md-block" >
-                    <div class="text-center text-light py-1" style="background-color : rgba(0, 0, 0, 0.7)">
-                        <h5><?= $row->name ?></h5>
-                        <p><?= $row->club; ?></p>
-                    </div>
+                    <a class="text-light" href="player.php?id=<?= $row->id?>"">
+                        <div class="text-center text-light py-1" style="background-color : rgba(0, 0, 0, 0.7)">
+                            <h5><?= $row->name ?></h5>
+                            <p><?= $row->club; ?></p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <?php endforeach; ?>

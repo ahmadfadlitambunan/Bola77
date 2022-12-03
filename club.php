@@ -1,7 +1,11 @@
 <?php
+    // http_response_code(404);
+    // include('404.php'); // provide your own HTML for the error page
+    // die();
     require 'vendor/autoload.php';
     require 'functions.php';
 
+    $URI = $_GET['idn'];
     \EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
     \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
     \EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
@@ -14,95 +18,86 @@
     $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
     $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
 
+    // get URI from GET method 'idn'
+    $resource = deextractURI($URI);
+
+    $queryToDBP = 'SELECT DISTINCT * WHERE {
+        <'.$resource.'> dbo:abstract ?abstract;
+                        dbp:clubname ?name;
+                        dbo:ground ?ground;
+                        dbo:manager ?mng;
+                        dbp:fullname ?fullname;
+                        foaf:nick ?nick;
+                        foaf:isPrimaryTopicOf ?link.
+        ?mng foaf:name ?manager.
+        ?ground foaf:name ?stadium;
+                dbo:location ?geo.
+        ?geo geo:lat ?lat;
+             geo:long ?long.
+        FILTER(lang(?abstract) = "en").
+        OPTIONAL{<'.$resource.'> dbp:stadium ?stad;
+                                dbo:thumbnail ?img.
+        }.
+    } LIMIT 1';
+    
+
+    // execute the query
+    $result = $dbpedia_endpoint->query($queryToDBP);
+    // var_dump($result);exit();
+    // fetch the result of the query
+    foreach($result as $r) {
+        $row = $r;
+    }
+
+    $OG = \EasyRdf\Graph::newAndLoad($row->link);
 ?>
 
 <?php
     include 'header.php';
     include 'navbar.php';
 ?>
+<!-- Product section-->
 <section class="py-3">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5">
-            <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." /></div>
-            <div class="col-md-8">
-                <h1 class="display-5 fw-bolder">Data Pemain</h1>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Nama Lengkap :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tempat Lahir :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tanggal Lahir (umur) :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Tinggi  :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Kaki Terkuat  :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Posisi  :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Club Sekarang  :
-                            </div>
-                            <div class="col-6 text-bold">
-                                
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                Harga Pasar  :
-                            </div>
-                            <div class="col-6 text-bold">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6 ">
-                                <h3 class="font-weight-bold">Clubs :</h3>
-                                <div class="list-group list-group-flush">
-                                    <a href="club.php?idn=?" class="list-group-item list-group-item-action">fsa</a>
-                                </div>
-                            </div>
-                            <!-- <div class="col-6 text-bold">
-                                <h3 class="font-weight-bold">National Teams :</h3>
-                                <div class="list-group list-group-flush">
-                                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
+            <div class="col-md-5 p-0">
+                <img class="img-fluid" src="<?= $OG->image ?>" alt="..." />
+                <h3 class="display-5 fw-bolder pt-3">Details</h3>
+                <div class="row">
+                    <div class="col-3 lead">Full Name</div>
+                    <div class="col-9 lead font-weight-bold">: <?= $row->fullname ?></div>
                 </div>
+                <div class="row">
+                    <div class="col-3 lead">Manager</div>
+                    <div class="col-9 lead font-weight-bold">: <?= $row->manager ?></div>
+                </div>
+                <div class="row">
+                    <div class="col-3 lead">Stadium</div>
+                    <div class="col-9 lead font-weight-bold">: <?= $row->stadium?></div>
+                </div>
+                <div class="open-street-map">
+                    <h3 class="display-5 fw-bolder pt-3">Location</h3>
+                    <div id="map" style="width: 450px; height: 300px;"></div>
+                    <script>
+                        var map = L.map('map').setView([<?=$row->lat?>, <?=$row->long?>], 13);
+
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+
+                        L.marker([<?=$row->lat?>, <?=$row->long?>]).addTo(map)
+                            .bindPopup('<?= $row->stadium?>')
+                            .openPopup();             
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h1 class="display-5 fw-bolder"><?= $row->name ?></h1>
+                <div class="fs-5 mb-5">
+                    <span class="text-decoration-line-through"><?= $row->nick ?></span>
+                </div>
+                <p class="lead"><?= $row->abstract ?></p>
             </div>
         </div>
     </div>

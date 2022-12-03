@@ -42,14 +42,15 @@ foreach($result as $r) {
 // Get data from OpenGraph 'transfermarkt.com'
 $og = \EasyRdf\Graph::newAndLoad($row->link); 
 
-//Query To DBPedia
+//Query To DBPedia To get All clubs
 $queryCLubs = '
-    SELECT DISTINCT ?club ?clubN ?clubName ?cClubName WHERE {
-        <'.$row->p.'> dbp:clubs ?club;
-                    dbp:currentclub ?clubN.
+    SELECT DISTINCT ?club ?yClub ?clubName ?yClubName WHERE {
+        <'.$row->p.'> dbp:clubs ?club.
         ?club dbp:clubname ?clubName.
-        ?clubN dbp:clubname ?cClubName.
     }';
+
+
+
 
 $res = $dbpedia_endpoint->query($queryCLubs);
 ?>
@@ -63,7 +64,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
 <section class="py-3">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center mb-2">
-            <div class="card bg-dark text-white">
+            <div class="card text-white">
                 <img class="card-img" src="<?= $row->banner ?>" alt="Card image">
                 <div class="card-img-overlay">
                     <h1 class="card-title"><?= $row->name ?></h1>
@@ -73,9 +74,11 @@ $res = $dbpedia_endpoint->query($queryCLubs);
         <div class="row gx-4 gx-lg-5">
             <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." /></div>
             <div class="col-md-8">
-                <h1 class="display-5 fw-bolder">Data Pemain</h1>
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title">
+                            <h2 class='font-weight-bold'>Data Pemain</h2>
+                        </div>
                         <div class="row mb-2">
                             <div class="col-6">
                                 Nama Lengkap :
@@ -129,12 +132,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                                 Club Sekarang  :
                             </div>
                             <div class="col-6 text-bold">
-                                <?php 
-                                foreach($res as $r) :
-                                    $club = $r->cClubName;
-                                endforeach;
-                                    echo $club;
-                                ?>
+                                <?= $row->clubN ?>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -150,18 +148,10 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                                 <h3 class="font-weight-bold">Clubs :</h3>
                                 <div class="list-group list-group-flush">
                                     <?php foreach($res as $r) :?>
-                                    <a href="club.php?idn=?<?= extractURI($r->club)?>" class="list-group-item list-group-item-action"><?= $r->clubName ?></a>
+                                    <a href="club.php?idn=<?= extractURI($r->club)?>" class="list-group-item list-group-item-action"><?= $r->clubName ?></a>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <!-- <div class="col-6 text-bold">
-                                <h3 class="font-weight-bold">National Teams :</h3>
-                                <div class="list-group list-group-flush">
-                                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

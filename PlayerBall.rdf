@@ -67,7 +67,7 @@
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/karim-benzema/profil/spieler/18922"/>
         </fb:player>
 
-        <fb:player rdf:about="http://dbpedia.org/resource/Kylian_Mbapp%C3%A9">
+        <fb:player rdf:about="http://dbpedia.org/resource/Kylian_Mbappé">
             <fb:id>p5</fb:id>
             <rdfs:label>Kylian Mbappé</rdfs:label>
             <fb:fullName>Kylian Mbappé Lottin</fb:fullName>
@@ -97,7 +97,7 @@
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/jadon-sancho/profil/spieler/401173"/>
         </fb:player>
 
-        <fb:player rdf:about="http://dbpedia.org/resource/Luis_D%C3%ADaz_(Colombian_footballer)">
+        <fb:player rdf:about="http://dbpedia.org/resource/Luis_Díaz_(Colombian_footballer)">
             <fb:id>p7</fb:id>
             <rdfs:label>Luis Díaz</rdfs:label>
             <fb:fullName>Luis Fernando Díaz Marulanda</fb:fullName>
