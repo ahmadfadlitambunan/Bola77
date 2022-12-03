@@ -5,20 +5,125 @@
         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
         xmlns:owl="http://www.w3.org/2002/07/owl#"
         xmlns:dc="http://purl.org/dc/terms/"
-        xmlns:football="https://example.org/schema/football/">
+        xmlns:fb="https://example.org/schema/football/">
          
-
-        <football:player rdf:about="https://dbpedia.org/page/David_de_Gea">
-            <football:id>1</football:id>
-            <football:name>David De Gea</football:name>
-            <football:number>1</football:number>
-            <foaf:homepage rdf:resource="https://sports.ndtv.com/football/players/95843-david-de-gea-playerprofile"/>
-        </football:player>
-
-        <football:player rdf:about="https://dbpedia.org/page/Cristiano_Ronaldo">
-            <football:id>2</football:id>
-            <football:name>Cristiano_Ronaldo</football:name>
-            <football:number>7</football:number>
+        <fb:player rdf:about="http://dbpedia.org/resource/Cristiano_Ronaldo">
+            <fb:id>p1</fb:id>
+            <rdfs:label>Cristiano Ronaldo</rdfs:label>
+            <fb:fullName>Cristiano Ronaldo dos Santos Aveiro</fb:fullName>
+            <fb:birthDate>1985-02-05</fb:birthDate>
+            <fb:birthPlace>Funchal, Madeira, Portugal</fb:birthPlace>
+            <fb:position>Penyerang - Penyerang Tengah</fb:position>
+            <fb:foot>Kanan</fb:foot>
+            <fb:height>1.87m</fb:height>
+            <fb:currentClub>Tidak Memiliki Club</fb:currentClub>
+            <fb:marketValue>20 juta euro</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/Ey8UdPMWgAkIdP7.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"/>
-        </football:player>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Lionel_Messi">
+            <fb:id>p2</fb:id>
+            <rdfs:label>Lionel Messi</rdfs:label>
+            <fb:fullName>Lionel Andrés Messi</fb:fullName>
+            <fb:birthDate>24 Juni 1987</fb:birthDate>
+            <fb:birthPlace>Argentina</fb:birthPlace>
+            <fb:position>Penyerang Tengah</fb:position>
+            <fb:foot>Kiri</fb:foot>
+            <fb:height>169cm</fb:height>
+            <fb:currentClub>Paris Saint-Germain</fb:currentClub>
+            <fb:marketValue>344 milliar rupiah</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/FWBDl2mUUAAsqoE.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.co.id/lionel-messi/marktwertverlauf/spieler/28003"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Neymar">
+            <fb:id>p3</fb:id>
+            <rdfs:label>Neymar</rdfs:label>
+            <fb:fullName>Neymar da Silva Santos Júnior</fb:fullName>
+            <fb:birthDate>1992-02-05</fb:birthDate>
+            <fb:birthPlace>Mogi das Cruzes, Brazil</fb:birthPlace>
+            <fb:position>Penyerang</fb:position>
+            <fb:foot>Right</fb:foot>
+            <fb:height>1.75 m</fb:height>
+            <fb:currentClub>Paris Saint-Germain</fb:currentClub>
+            <fb:marketValue>75 juta euro</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/Etbrmq4WYAAF1w6.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/neymar/profil/spieler/68290"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Karim_Benzema">
+            <fb:id>p4</fb:id>
+            <rdfs:label>Karim Benzema</rdfs:label>
+            <fb:fullName>Karim Mostafa Benzema</fb:fullName>
+            <fb:birthDate>1987-12-19</fb:birthDate>
+            <fb:birthPlace>Lyon, France</fb:birthPlace>
+            <fb:position>Penyerang Tengah</fb:position>
+            <fb:foot>Right</fb:foot>
+            <fb:height>1.85 m</fb:height>
+            <fb:currentClub>Real Madrid</fb:currentClub>
+            <fb:marketValue>35 juta euro</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/Ep8-iHyXUAE8Ovd.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/karim-benzema/profil/spieler/18922"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Kylian_Mbapp%C3%A9">
+            <fb:id>p5</fb:id>
+            <rdfs:label>Kylian Mbappé</rdfs:label>
+            <fb:fullName>Kylian Mbappé Lottin</fb:fullName>
+            <fb:birthDate>1998-12-20</fb:birthDate>
+            <fb:birthPlace>Paris, France</fb:birthPlace>
+            <fb:position>Attack - Centre-Forward</fb:position>
+            <fb:foot>Righ</fb:foot>
+            <fb:height>1.78 m</fb:height>
+            <fb:currentClub>Paris Saint-Germain</fb:currentClub>
+            <fb:marketValue>2,589,624.89 IDR</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/ESYVS1dXQAcSLiR.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/kylian-mbappe/profil/spieler/342229"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Jadon_Sancho">
+            <fb:id>p6</fb:id>
+            <rdfs:label>Jadon Sancho</rdfs:label>
+            <fb:fullName>Jadon Malik Sancho</fb:fullName>
+            <fb:birthDate>2000-03-25</fb:birthDate>
+            <fb:birthPlace>Camberwell, England</fb:birthPlace>
+            <fb:position>Left Winger</fb:position>
+            <fb:foot>Righ</fb:foot>
+            <fb:height>1.80 m</fb:height>
+            <fb:currentClub>Manchester United</fb:currentClub>
+            <fb:marketValue>974,436 IDR</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/E5PpPsjWEAEIR2K.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/jadon-sancho/profil/spieler/401173"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/Luis_D%C3%ADaz_(Colombian_footballer)">
+            <fb:id>p7</fb:id>
+            <rdfs:label>Luis Díaz</rdfs:label>
+            <fb:fullName>Luis Fernando Díaz Marulanda</fb:fullName>
+            <fb:birthDate>1997-01-13</fb:birthDate>
+            <fb:birthPlace>Barrancas</fb:birthPlace>
+            <fb:position>Sayap</fb:position>
+            <fb:foot>Kanan</fb:foot>
+            <fb:height>180cm</fb:height>
+            <fb:currentClub>Liverpool FC</fb:currentClub>
+            <fb:marketValue>726 milliah rupiah</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/profile_banners/1111660029374017536/1644010457/1500x500</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/luis-diaz/profil/spieler/480692"/>
+        </fb:player>
+
+        <fb:player rdf:about="http://dbpedia.org/resource/N'Golo_Kanté">
+            <fb:id>p8</fb:id>
+            <rdfs:label>N'Golo Kanté</rdfs:label>
+            <fb:fullName>N'Golo Kanté</fb:fullName>
+            <fb:birthDate>1991-03-29</fb:birthDate>
+            <fb:birthPlace>Mali</fb:birthPlace>
+            <fb:position>Pemain Tengah</fb:position>
+            <fb:foot>Kanan</fb:foot>
+            <fb:height>171cm</fb:height>
+            <fb:currentClub>Chelsea FC</fb:currentClub>
+            <fb:marketValue>373 milliah rupiah</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/DoHNVyFVAAEL7Pc.jpg</fb:banner>
+            <foaf:homepage rdf:resource="https://www.transfermarkt.com/ngolo-kante/profil/spieler/225083"/>
+        </fb:player>
 </rdf:RDF>
