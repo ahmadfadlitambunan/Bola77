@@ -1,7 +1,5 @@
 <?php
-    // http_response_code(404);
-    // include('404.php'); // provide your own HTML for the error page
-    // die();
+    
     require 'vendor/autoload.php';
     require 'functions.php';
 
@@ -12,6 +10,7 @@
     \EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
     \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
+    \EasyRdf\RdfNamespace::set('geo', 'http://www.w3.org/2003/01/geo/wgs84_pos#');
     \EasyRdf\RdfNamespace::set('fb', 'https://example.org/schema/football/');
     \EasyRdf\RdfNamespace::setDefault('og');
 
@@ -29,26 +28,33 @@
                         dbp:fullname ?fullname;
                         foaf:nick ?nick;
                         foaf:isPrimaryTopicOf ?link.
-        ?mng foaf:name ?manager.
-        ?ground foaf:name ?stadium;
-                dbo:location ?geo.
-        ?geo geo:lat ?lat;
-             geo:long ?long.
-        FILTER(lang(?abstract) = "en").
-        OPTIONAL{<'.$resource.'> dbp:stadium ?stad;
-                                dbo:thumbnail ?img.
+                   ?mng dbp:name ?manager.
+                ?ground foaf:name ?stadium;
+                        dbo:location ?geo.
+                  ?geo  geo:lat ?ltd;
+                        geo:long ?lng.
+        FILTER(lang(?abstract) = "en" && ?nick != ""@en).
+        OPTIONAL{?ground geo:lat ?lat;
+                        geo:long ?long.
         }.
     } LIMIT 1';
     
 
     // execute the query
     $result = $dbpedia_endpoint->query($queryToDBP);
-    // var_dump($result);exit();
+
+    // if there's no result retrieve, 404 error
+    if($result->numRows() < 1) {
+        http_response_code(404);
+        include('404.php'); // provide your own HTML for the error page
+        die();
+    }
+
     // fetch the result of the query
     foreach($result as $r) {
         $row = $r;
     }
-
+    // Fetch form Open Graph Protocol
     $OG = \EasyRdf\Graph::newAndLoad($row->link);
 ?>
 
@@ -79,15 +85,29 @@
                     <h3 class="display-5 fw-bolder pt-3">Location</h3>
                     <div id="map" style="width: 450px; height: 300px;"></div>
                     <script>
-                        var map = L.map('map').setView([<?=$row->lat?>, <?=$row->long?>], 13);
+                        var map = L.map('map').setView([
+                            <?php if(isset($row->lat) && isset($row->long)) {
+                                    echo $row->lat.','.$row->long;
+                                } else {
+                                    echo $row->ltd.','.$row->lng;
+                                }
+                            ?>
+                        ], 13);
 
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
                             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         }).addTo(map);
 
-                        L.marker([<?=$row->lat?>, <?=$row->long?>]).addTo(map)
-                            .bindPopup('<?= $row->stadium?>')
+                        L.marker([
+                            <?php if(isset($row->lat) && isset($row->long)) {
+                                    echo $row->lat.','.$row->long;
+                                } else {
+                                    echo $row->ltd.','.$row->lng;
+                                }
+                            ?>
+                            ]).addTo(map)
+                            .bindPopup('Home Ground <?= $row->fullname?>')
                             .openPopup();             
                     </script>
                 </div>
