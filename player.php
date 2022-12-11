@@ -77,10 +77,10 @@ $res = $dbpedia_endpoint->query($queryCLubs);
         <div class="row gx-4 gx-lg-5">
             <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." /></div>
             <div class="col-md-8 lead">
-                <h1 class="display-5 fw-bolder">Data Pemain</h1>
+                <h1 class="display-5 fw-bolder">Player Data</h1>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Nama Lengkap :
+                        Full Name :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->fullName ?>
@@ -88,7 +88,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Tempat Lahir :
+                        Birth Place :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->bPlace ?>
@@ -96,7 +96,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Tanggal Lahir (umur) :
+                        Birth Date (Age) :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->bDay ?>
@@ -104,7 +104,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Tinggi  :
+                        Height  :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->height ?>
@@ -112,7 +112,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Kaki Terkuat  :
+                        Prefered Foot  :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->foot ?>
@@ -120,7 +120,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Posisi  :
+                        Position  :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->pos ?>
@@ -128,7 +128,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Club Sekarang  :
+                        Current Club  :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->clubN ?>
@@ -136,7 +136,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        Harga Pasar  :
+                        Market Value  :
                     </div>
                     <div class="col-6 text-bold">
                         <?= $row->price ?>

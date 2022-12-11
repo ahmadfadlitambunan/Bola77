@@ -70,7 +70,7 @@ $result = $jena_endpoint->query($sparql_query);
         <!-- Related items section-->
         <section class="py-3 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Pemain Sepakbola</h2>
+                <h2 class="fw-bolder mb-4">Football Player</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php 
                         $sparql_query2 = '
@@ -87,6 +87,7 @@ $result = $jena_endpoint->query($sparql_query);
 
                         $result2 = $jena_endpoint->query($sparql_query2);
                         foreach($result2 as $res) :
+                            // Open Graph Protocol
                             $OG = \EasyRdf\Graph::newAndLoad($res->link);
                     ?>
 

@@ -7,6 +7,7 @@
     \EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
     \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
     \EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
+    \EasyRdf\RdfNamespace::set('dbr', 'http://dbpedia.org/resource/');
     \EasyRdf\RdfNamespace::set('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
     \EasyRdf\RdfNamespace::set('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
     \EasyRdf\RdfNamespace::set('owl', 'http://www.w3.org/2002/07/owl#');
@@ -17,11 +18,10 @@
     $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
     $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
 
-    // get URI from GET method 'idn'
-    $resource = deextractURI($URI);
+
 
     $queryToDBP = 'SELECT DISTINCT * WHERE {
-        <'.$resource.'> dbo:abstract ?abstract;
+        dbr:'.$URI.' dbo:abstract ?abstract;
                         dbp:clubname ?name;
                         dbo:ground ?ground;
                         dbo:manager ?mng;
@@ -50,10 +50,12 @@
         die();
     }
 
+    // var_dump($result); exit;
     // fetch the result of the query
     foreach($result as $r) {
         $row = $r;
     }
+    
     // Fetch form Open Graph Protocol
     $OG = \EasyRdf\Graph::newAndLoad($row->link);
 ?>
@@ -113,7 +115,15 @@
                 </div>
             </div>
             <div class="col-md-7">
-                <h1 class="display-5 fw-bolder"><?= $row->name ?></h1>
+                <h1 class="display-5 fw-bolder">
+                    <?php
+                        if(isset($row->nameF)) {
+                            echo $row->nameF;
+                        } elseif (isset($row->name)) {
+                            echo $row->name;
+                        }
+                    ?>
+                </h1>
                 <div class="fs-5 mb-5">
                     <span class="text-decoration-line-through"><?= $row->nick ?></span>
                 </div>

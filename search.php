@@ -16,24 +16,21 @@
  $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
  $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
  
- $sparql_query = 'SELECT * WHERE {
+ $sparql_query = 'SELECT DISTINCT * WHERE {
      {  ?p 	a fb:player;
             fb:id ?id;
             rdfs:label ?name;
             fb:fullName ?fullName;
-            fb:position ?pos;
             fb:currentClub ?clubN;
-            fb:marketValue ?price;
+            fb:position ?pos;
             foaf:homepage ?link.
         FILTER REGEX (?fullName, "'.$key.'", "i").
      } UNION {
-        ?p 	a fb:player;
+         ?p a fb:player;
             fb:id ?id;
             rdfs:label ?name;
-            fb:fullName ?fullName;
-            fb:position ?pos;
             fb:currentClub ?clubN;
-            fb:marketValue ?price;
+            fb:position ?pos;
             foaf:homepage ?link.
      FILTER REGEX (?clubN, "'.$key.'", "i").
     }
@@ -55,14 +52,16 @@ $result = $jena_endpoint->query($sparql_query);
                 <ul class="list-unstyled">
                 <?php 
                     if($result->numRows() < 1) {
-                        echo "<div class='font-weight-bold lead'>Sorry, There's no result for ".$key."</div>";
+                        echo "<div class='text-center font-weight-bold lead'>Sorry, There's no result for ".$key."</div>";
                     } else {
                         echo "<div class='text-center font-weight-bold lead'>Here's the result for '".$key."'</div>";
                         foreach($result as $row) :
                             $OG = \EasyRdf\Graph::newAndLoad($row->link);                
                 ?>
                     <li class="media m-3 bg-dark text-light rounded">
-                        <img class="img-fluid rounded m-2" src="<?= $OG->image ?>" alt="" width='100px'>
+                        <a href="player.php?id=<?= $row->id ?>">
+                            <img class="img-fluid rounded m-2" src="<?= $OG->image ?>" alt="" width='100px'>
+                        </a>
                         <div class="media-body p-3">
                         <h5 class=""><?= $row->name ?></h5>
                         <p><?= $row->pos ?></p>
