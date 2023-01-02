@@ -12,6 +12,7 @@ require 'vendor/autoload.php';
 
 $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
 
+//Query untuk ke RDF
 $sparql_query = '
     SELECT DISTINCT ?p ?id ?name ?pos ?club ?cover
     WHERE {
@@ -43,7 +44,7 @@ $result = $jena_endpoint->query($sparql_query);
             <?php foreach($result as $row) :
             ?>
             <div class="carousel-item <?php if($row->id == 'p1') echo ' active'; ?>">
-                <img class="d-block w-100" src="<?= $row->cover ?>" alt="First slide">
+                <img class="d-block w-100" src="<?= $row->cover ?>" alt="First slide" width="1200" height="400">
                 <div class="carousel-caption d-none d-md-block" >
                     <a class="text-light" href="player.php?id=<?= $row->id?>"">
                         <div class="text-center text-light py-1" style="background-color : rgba(0, 0, 0, 0.7)">
@@ -73,6 +74,7 @@ $result = $jena_endpoint->query($sparql_query);
                 <h2 class="fw-bolder mb-4">Football Player</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php 
+                        // Query ke RDF
                         $sparql_query2 = '
                         SELECT DISTINCT ?p ?id ?name ?pos ?club ?cover ?link
                         WHERE {
@@ -87,11 +89,11 @@ $result = $jena_endpoint->query($sparql_query);
 
                         $result2 = $jena_endpoint->query($sparql_query2);
                         foreach($result2 as $res) :
-                            // Open Graph Protocol
+                            // Open Graph Protocol dari foaf:homepage transfermarkt.com
                             $OG = \EasyRdf\Graph::newAndLoad($res->link);
                     ?>
 
-                    <div class="col mb-5">
+                    <div class="col-4 mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
                             <a href="player.php?id=<?=$res->id?>">

@@ -1,9 +1,9 @@
 <?php
     
-    require 'vendor/autoload.php';
     require 'functions.php';
-
     $URI = $_GET['idn'];
+    
+    require 'vendor/autoload.php';
     \EasyRdf\RdfNamespace::set('foaf', 'http://xmlns.com/foaf/0.1/');
     \EasyRdf\RdfNamespace::set('dbp', 'http://dbpedia.org/property/');
     \EasyRdf\RdfNamespace::set('dbo', 'http://dbpedia.org/ontology/');
@@ -15,25 +15,30 @@
     \EasyRdf\RdfNamespace::set('fb', 'https://example.org/schema/football/');
     \EasyRdf\RdfNamespace::setDefault('og');
 
+    // Enpoint Query dari RDF yang dibuat
     $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
+    // Endpoint Query dari DBPedia
     $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
 
+    // get URI from GET method 'idn'
+    $resource = deextractURI($URI);
 
-
+    // Query ke DBPedia
     $queryToDBP = 'SELECT DISTINCT * WHERE {
-        dbr:'.$URI.' dbo:abstract ?abstract;
-                        dbp:clubname ?name;
-                        dbo:ground ?ground;
-                        dbo:manager ?mng;
-                        dbp:fullname ?fullname;
-                        foaf:nick ?nick;
-                        foaf:isPrimaryTopicOf ?link.
-                   ?mng dbp:name ?manager.
-                ?ground foaf:name ?stadium;
-                        dbo:location ?geo.
-                  ?geo  geo:lat ?ltd;
-                        geo:long ?lng.
-        FILTER(lang(?abstract) = "en" && ?nick != ""@en).
+        <'.$resource.'> dbo:abstract ?abstract.
+        OPTIONAL{<'.$resource.'> dbp:clubname ?name.}.
+        OPTIONAL{<'.$resource.'> dbo:ground ?ground.
+                        ?ground  foaf:name ?stadium;
+                                 dbo:location ?geo.
+                           ?geo  geo:lat ?ltd;
+                                 geo:long ?lng.}.
+        OPTIONAL{<'.$resource.'> dbo:manager ?mng.
+                            ?mng dbp:name ?manager.}.
+        OPTIONAL{<'.$resource.'> dbp:fullname ?fullname.}.
+        OPTIONAL{<'.$resource.'> foaf:nick ?nick.}.
+        OPTIONAL{<'.$resource.'> foaf:isPrimaryTopicOf ?link.}.
+                  
+        FILTER(lang(?abstract) = "en" && ?nick != "-"@en).
         OPTIONAL{?ground geo:lat ?lat;
                         geo:long ?long.
         }.
@@ -73,15 +78,39 @@
                 <h3 class="display-5 fw-bolder pt-3">Details</h3>
                 <div class="row">
                     <div class="col-3 lead">Full Name</div>
-                    <div class="col-9 lead font-weight-bold">: <?= $row->fullname ?></div>
+                    <div class="col-9 lead font-weight-bold">: 
+                        <?php
+                            if(isset($row->fullName)) {
+                                echo $row->fullName;
+                            } else {
+                                echo "-";
+                            }
+                        ?>
+                        </div>
                 </div>
                 <div class="row">
                     <div class="col-3 lead">Manager</div>
-                    <div class="col-9 lead font-weight-bold">: <?= $row->manager ?></div>
+                    <div class="col-9 lead font-weight-bold">: 
+                        <?php
+                            if(isset($row->manager)) {
+                                echo $row->manager;
+                            } else {
+                                echo "-";
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-3 lead">Stadium</div>
-                    <div class="col-9 lead font-weight-bold">: <?= $row->stadium?></div>
+                    <div class="col-9 lead font-weight-bold">: 
+                        <?php
+                            if(isset($row->stadium)) {
+                                echo $row->stadium;
+                            } else {
+                                echo "-";
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div class="open-street-map">
                     <h3 class="display-5 fw-bolder pt-3">Location</h3>
@@ -125,7 +154,15 @@
                     ?>
                 </h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through"><?= $row->nick ?></span>
+                    <span class="text-decoration-line-through">
+                        <?php
+                            if(isset($row->nick)) {
+                                echo $row->nick;
+                            } else {
+                                echo "-";
+                            }
+                        ?>
+                    </span>
                 </div>
                 <p class="lead"><?= $row->abstract ?></p>
             </div>

@@ -8,7 +8,7 @@
         xmlns:fb="https://example.org/schema/football/">
          
         <fb:player rdf:about="http://dbpedia.org/resource/Cristiano_Ronaldo">
-            <fb:id>p1</fb:id>
+            <fb:id>p2</fb:id>
             <rdfs:label>Cristiano Ronaldo</rdfs:label>
             <fb:fullName>Cristiano Ronaldo dos Santos Aveiro</fb:fullName>
             <fb:birthDate>1985-02-05</fb:birthDate>
@@ -17,13 +17,13 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.87 m</fb:height>
             <fb:currentClub>No Club</fb:currentClub>
-            <fb:marketValue>20000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/Ey8UdPMWgAkIdP7.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"/>
         </fb:player>
 
         <fb:player rdf:about="http://dbpedia.org/resource/Lionel_Messi">
-            <fb:id>p2</fb:id>
+            <fb:id>p1</fb:id>
             <rdfs:label>Lionel Messi</rdfs:label>
             <fb:fullName>Lionel Andrés Messi</fb:fullName>
             <fb:birthDate>24 Juni 1987</fb:birthDate>
@@ -32,13 +32,13 @@
             <fb:foot>Left</fb:foot>
             <fb:height>1.69 m</fb:height>
             <fb:currentClub>Paris Saint-Germain</fb:currentClub>
-            <fb:marketValue>50000000</fb:marketValue>
-            <fb:banner>https://pbs.twimg.com/media/FWBDl2mUUAAsqoE.jpg</fb:banner>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50000000</fb:marketValue>
+            <fb:banner>https://pbs.twimg.com/media/FkSA--taYAE5yzI?format=jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.co.id/lionel-messi/marktwertverlauf/spieler/28003"/>
         </fb:player>
 
         <fb:player rdf:about="http://dbpedia.org/resource/Neymar">
-            <fb:id>p3</fb:id>
+            <fb:id>p4</fb:id>
             <rdfs:label>Neymar</rdfs:label>
             <fb:fullName>Neymar da Silva Santos Júnior</fb:fullName>
             <fb:birthDate>1992-02-05</fb:birthDate>
@@ -47,7 +47,7 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.75 m</fb:height>
             <fb:currentClub>Paris Saint-Germain</fb:currentClub>
-            <fb:marketValue>75000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">75000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/Etbrmq4WYAAF1w6.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/neymar/profil/spieler/68290"/>
         </fb:player>
@@ -62,13 +62,13 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.85 m</fb:height>
             <fb:currentClub>Real Madrid</fb:currentClub>
-            <fb:marketValue>30000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/Ep8-iHyXUAE8Ovd.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/karim-benzema/profil/spieler/18922"/>
         </fb:player>
 
         <fb:player rdf:about="http://dbpedia.org/resource/Kylian_Mbappé">
-            <fb:id>p5</fb:id>
+            <fb:id>p3</fb:id>
             <rdfs:label>Kylian Mbappé</rdfs:label>
             <fb:fullName>Kylian Mbappé Lottin</fb:fullName>
             <fb:birthDate>1998-12-20</fb:birthDate>
@@ -77,7 +77,7 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.78 m</fb:height>
             <fb:currentClub>Paris Saint-Germain</fb:currentClub>
-            <fb:marketValue>160000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">160000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/ESYVS1dXQAcSLiR.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/kylian-mbappe/profil/spieler/342229"/>
         </fb:player>
@@ -92,7 +92,7 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.80 m</fb:height>
             <fb:currentClub>Manchester United</fb:currentClub>
-            <fb:marketValue>60000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/E5PpPsjWEAEIR2K.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/jadon-sancho/profil/spieler/401173"/>
         </fb:player>
@@ -107,7 +107,7 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.80 m</fb:height>
             <fb:currentClub>Liverpool FC</fb:currentClub>
-            <fb:marketValue>75000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">75000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/profile_banners/1111660029374017536/1644010457/1500x500</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/luis-diaz/profil/spieler/480692"/>
         </fb:player>
@@ -122,7 +122,7 @@
             <fb:foot>Right</fb:foot>
             <fb:height>1.71 m</fb:height>
             <fb:currentClub>Chelsea FC</fb:currentClub>
-            <fb:marketValue>30000000</fb:marketValue>
+            <fb:marketValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30000000</fb:marketValue>
             <fb:banner>https://pbs.twimg.com/media/DoHNVyFVAAEL7Pc.jpg</fb:banner>
             <foaf:homepage rdf:resource="https://www.transfermarkt.com/ngolo-kante/profil/spieler/225083"/>
         </fb:player>

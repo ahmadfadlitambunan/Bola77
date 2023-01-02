@@ -14,8 +14,8 @@
  \EasyRdf\RdfNamespace::setDefault('og');
  
  $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
- $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
- 
+
+ // Query searching dari RDF yang dibuat
  $sparql_query = 'SELECT DISTINCT * WHERE {
      {  ?p 	a fb:player;
             fb:id ?id;
@@ -34,7 +34,7 @@
             foaf:homepage ?link.
      FILTER REGEX (?clubN, "'.$key.'", "i").
     }
-    }';      
+}';      
  
 $result = $jena_endpoint->query($sparql_query);
 

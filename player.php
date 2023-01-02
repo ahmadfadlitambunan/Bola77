@@ -16,6 +16,7 @@ $id = $_GET['id'];
 $jena_endpoint = new \EasyRdf\Sparql\Client('http://localhost:3030/football/sparql');
 $dbpedia_endpoint = new \EasyRdf\Sparql\Client('https://dbpedia.org/sparql');
 
+// Query ke RDF untuk mengambil detail singkat pemain
 $sparql_query = 'SELECT ?p ?id ?name ?fullName ?bDay ?bPlace ?height ?foot ?clubN ?pos ?price ?banner ?link WHERE {
 	?p 	a fb:player;
   		fb:id ?id;
@@ -75,7 +76,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
             </div>
         </div>
         <div class="row gx-4 gx-lg-5">
-            <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." /></div>
+            <div class="col-md-4 pl-0"><img class="img-fluid rounded" src="<?= $og->image ?>" alt="..." width="1200" height="400"/></div>
             <div class="col-md-8 lead">
                 <h1 class="display-5 fw-bolder">Player Data</h1>
                 <div class="row mb-2">
@@ -99,7 +100,7 @@ $res = $dbpedia_endpoint->query($queryCLubs);
                         Birth Date (Age) :
                     </div>
                     <div class="col-6 text-bold">
-                        <?= $row->bDay ?>
+                        <?= $row->bDay ?> (<?= getAge($row->bDay) ?>)
                     </div>
                 </div>
                 <div class="row mb-2">
